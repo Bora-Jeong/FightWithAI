@@ -7,8 +7,18 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Dialogue
 {
-    public int bgIndex;
+    public int bgIndex; // 배경 사진 몇번째
     public string content;
+}
+
+public enum Ingredient
+{
+    TopBread,
+    Tomato,
+    Lettuce,
+    Cheese,
+    Patty,
+    BottomBread
 }
 
 public class GameManager : SingleTon<GameManager>
