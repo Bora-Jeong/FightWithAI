@@ -15,7 +15,7 @@ public enum Ingredient
 {
     TopBread,
     Tomato,
-    Lettuce,
+    Cabbage,
     Cheese,
     Patty,
     BottomBread
@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] DialoguePanel _dialoguePanel;
     [SerializeField] GameObject _gamePanel;
+    [SerializeField] Sprite[] _ingredientSprites;
 
     [Header("Prologue")]
     [SerializeField] Sprite[] _prologueBG;
@@ -77,7 +78,13 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        StartCoroutine(StartPrologue());
+        //StartCoroutine(StartPrologue());
+
+        // 임시코드 프롤로그 시작 안하고 바로 게임 시작
+        _dialoguePanel.gameObject.SetActive(false);
+        _gamePanel.gameObject.SetActive(true);
+        RoundStart(1, 60f);
+        // 임시 코드
     }
 
     IEnumerator StartPrologue()  // 프롤로그 시작
@@ -106,6 +113,21 @@ public class GameManager : Singleton<GameManager>
 
         isPlaying = true;
         StartCoroutine(GameSchedulling());
+
+        Test();
+    }
+
+    private void Test()
+    {
+        Hamburger hamburger = new GameObject().AddComponent<Hamburger>();
+        hamburger.StackIngredient(Ingredient.BottomBread);
+        hamburger.StackIngredient(Ingredient.Patty);
+        hamburger.StackIngredient(Ingredient.Tomato);
+        hamburger.StackIngredient(Ingredient.Cheese);
+        hamburger.StackIngredient(Ingredient.Cheese);
+        hamburger.StackIngredient(Ingredient.Cabbage);
+        hamburger.StackIngredient(Ingredient.TopBread);
+        hamburger.transform.localScale = Vector3.one * 0.5f;
     }
 
     IEnumerator GameSchedulling()
@@ -123,4 +145,6 @@ public class GameManager : Singleton<GameManager>
     {
         isPlaying = false;
     }
+
+    public Sprite GetIngredientSprite(Ingredient ingredient) => _ingredientSprites[(int)ingredient]; // 재료 사진 얻는 함수!!!
 }
