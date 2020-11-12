@@ -21,7 +21,7 @@ public enum Ingredient
     BottomBread
 }
 
-public class GameManager : SingleTon<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] DialoguePanel _dialoguePanel;
     [SerializeField] GameObject _gamePanel;

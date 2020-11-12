@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
     public static T instance
@@ -13,7 +13,7 @@ public abstract class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
             {
                 T[] objectList = Resources.FindObjectsOfTypeAll<T>();
                 if (objectList.Length > 0)
-                    (objectList[0] as SingleTon<T>).Awake();
+                    (objectList[0] as Singleton<T>).Awake();
             }
             return _instance;
         }
