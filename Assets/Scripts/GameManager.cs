@@ -129,9 +129,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // 디버그용
         {
-
+            //HideRecipe();
         }
     }
 

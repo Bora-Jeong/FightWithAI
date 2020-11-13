@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Recipe : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite normal;
-    [SerializeField]
-    private Sprite broken;
-
-    private SpriteRenderer sr;
+    private Animator animator;
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public void Hide()
@@ -23,10 +18,13 @@ public class Recipe : MonoBehaviour
 
     private IEnumerator StartHide()
     {
-        sr.sprite = broken;
+        Hamburger hamburger = GetComponentInChildren<Hamburger>();
+        hamburger.gameObject.SetActive(false);
+        animator.SetBool("Out", true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3.5f);
 
-        sr.sprite = normal;
+        animator.SetBool("Out", false);
+        hamburger.gameObject.SetActive(true);
     }
 }

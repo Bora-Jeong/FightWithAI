@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 741849934672592826}
   - component: {fileID: 741849934672592829}
   - component: {fileID: 4497465190340934526}
+  - component: {fileID: 2042479933185481499}
   m_Layer: 5
   m_Name: Recipe
   m_TagString: Untagged
@@ -89,3 +90,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normal: {fileID: 21300000, guid: c965d2a6e20bb934bbfd0870b9450b29, type: 3}
   broken: {fileID: 0}
+--- !u!95 &2042479933185481499
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741849934672592831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b01844cc27aeaa48879edfc854fcd3b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
