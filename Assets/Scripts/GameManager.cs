@@ -180,7 +180,7 @@ public class GameManager : Singleton<GameManager>
 
     public void nextRound()
     {
-        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f, 2f);
+        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f, 10f);
         RoundStart(_day + 1, _totalTime);
     }
 
