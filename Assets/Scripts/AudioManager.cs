@@ -20,6 +20,8 @@ public class AudioManager : Singleton<AudioManager>
     AudioClip serve;
     [SerializeField]
     AudioClip dump;
+    [SerializeField]
+    AudioClip hammer;
 
     public void DropSound()
     {
@@ -41,6 +43,11 @@ public class AudioManager : Singleton<AudioManager>
             uiAudio.Play();
         }
 
+    }
+    public void hammerSound()
+    {
+        trayAudio.clip = hammer;
+        trayAudio.Play();
     }
 
 }

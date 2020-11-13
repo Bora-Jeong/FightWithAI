@@ -298,6 +298,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(_hammerChance > 0)
         {
+            AudioManager.instance.hammerSound();
             _ai.Pause();
             _hammerChance--;
            
