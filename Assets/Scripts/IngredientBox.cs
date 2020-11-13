@@ -8,7 +8,7 @@ public class IngredientBox : MonoBehaviour
     [SerializeField]
     Transform ingredientTransform;
     GameObject curIngredient;
-
+   
     private void OnMouseDown()
     {
         /*
@@ -44,6 +44,7 @@ public class IngredientBox : MonoBehaviour
         if (Physics2D.Raycast(objectPostion, transform.forward, 10, 1 << LayerMask.NameToLayer("Tray"))){
             GameManager.instance.playerHamburger.StackIngredient(ingredient);
             print("tray");
+           
         }
         else
         {

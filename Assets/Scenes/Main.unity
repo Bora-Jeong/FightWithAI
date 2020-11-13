@@ -2643,8 +2643,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 2.449997, y: -121.1}
-  m_SizeDelta: {x: -20.43808, y: 142.26477}
+  m_AnchoredPosition: {x: 2.449997, y: -149.6}
+  m_SizeDelta: {x: -20.43808, y: 176.4231}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705952246
 MonoBehaviour:
@@ -5169,7 +5169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -46, y: 0}
-  m_SizeDelta: {x: 1028.855, y: 0}
+  m_SizeDelta: {x: 1024.802, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263259074
 MonoBehaviour:
@@ -6174,7 +6174,7 @@ RectTransform:
   m_GameObject: {fileID: 1472288423}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1516356601}
   - {fileID: 1989702160}
@@ -6185,8 +6185,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.35, y: -1.33}
-  m_SizeDelta: {x: 10, y: 14.601194}
+  m_AnchoredPosition: {x: 6.67, y: -1.6}
+  m_SizeDelta: {x: 8.070103, y: 11.939264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1472288425
 SpriteRenderer:
@@ -7233,7 +7233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 3
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -7313,8 +7313,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c4aba2996b263da4688d09d0d51d2e61, type: 3}
   - {fileID: 21300000, guid: a0b6af2bd3d1f6342a89766cc9391e14, type: 3}
   _prologueBG:
-  - {fileID: 21300000, guid: f862b7f88cfea0a40a40acae7581d6c3, type: 3}
-  - {fileID: 21300000, guid: 6bc8f2db1196480479eb1b88da33ebd8, type: 3}
+  - {fileID: 21300000, guid: 84ec742bd2af4f344a3431979aec92b0, type: 3}
+  - {fileID: 21300000, guid: 5d0d20fc29d1ae14084879c799f947af, type: 3}
+  - {fileID: 21300000, guid: ce8b3a1a4e620814e817e4da791e013b, type: 3}
   _dialogues:
   - bgIndex: 0
     content: "\uC2DC\uAC04\uC774 \uBC8C\uC368?"
