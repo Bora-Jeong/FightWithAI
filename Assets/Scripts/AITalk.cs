@@ -12,11 +12,18 @@ public class AITalk : MonoBehaviour
     [SerializeField]
     private string[] contents;
     [SerializeField]
+    private AudioClip[] sounds;
+    [SerializeField]
     private string[] success;
+    AudioSource audio;
 
     private bool isShowing = false;
     private int contentIndex = 0;
 
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
     public void Show()
     {
         if (isShowing) return;
@@ -28,6 +35,8 @@ public class AITalk : MonoBehaviour
         isShowing = true;
         talk.SetActive(true);
         text.text = contents[contentIndex];
+        audio.clip = sounds[contentIndex];
+        audio.Play();
         contentIndex = (contentIndex + 1) % contents.Length;
         yield return new WaitForSeconds(2f);
         talk.SetActive(false);
