@@ -201,7 +201,7 @@ public class GameManager : Singleton<GameManager>
             DestroyImmediate(temp.transform.parent.gameObject);
         }
 
-
+        _recipeRoot.GetComponent<HorizontalLayoutGroup>().enabled = true;
         for (int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();

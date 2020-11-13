@@ -43,13 +43,12 @@ public class IngredientBox : MonoBehaviour
 
         if (Physics2D.Raycast(objectPostion, transform.forward, 10, 1 << LayerMask.NameToLayer("Tray"))){
             GameManager.instance.playerHamburger.StackIngredient(ingredient);
-            print("tray");
             AudioManager.instance.DropSound();
            
         }
         else
         {
-            print("tray out");
+
         }
     }
 
