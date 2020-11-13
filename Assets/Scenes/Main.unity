@@ -1906,7 +1906,7 @@ MonoBehaviour:
   _timeText: {fileID: 1740161814}
   _playerScoreText: {fileID: 1067709171}
   _aiScoreText: {fileID: 1305386088}
-  HammerButton: {fileID: 0}
+  HammerButton: {fileID: 968229048}
   _recipeRoot: {fileID: 434431294}
   _aiRecipeRoot: {fileID: 1732159701}
   _recipe: {fileID: 741849934672592831, guid: 0b64545e28027d14689dfaf0bdd09099, type: 3}
