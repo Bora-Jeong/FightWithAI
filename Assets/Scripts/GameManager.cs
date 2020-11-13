@@ -205,7 +205,6 @@ public class GameManager : Singleton<GameManager>
     {
         print("방해공작");
         _aiDisturbCount--;
-        
 
     }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 741849934672592828}
   - component: {fileID: 741849934672592826}
   - component: {fileID: 741849934672592829}
+  - component: {fileID: 4497465190340934526}
   m_Layer: 5
   m_Name: Recipe
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 52193f4807d0e664586bbb1f60007b4b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c965d2a6e20bb934bbfd0870b9450b29, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -74,3 +75,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4497465190340934526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741849934672592831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed6cc7dcf9462e4b88a796a186d6db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal: {fileID: 21300000, guid: c965d2a6e20bb934bbfd0870b9450b29, type: 3}
+  broken: {fileID: 0}
