@@ -13,23 +13,28 @@ public class Hamburger : MonoBehaviour
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sortingLayerName = "Hamburger";
         sr.sprite = GameManager.instance.GetIngredientSprite(ingredient);
-        float height = sr.size.y;
+
+        float y = sr.bounds.size.y;
+        go.transform.SetParent(transform);
+        go.transform.localScale = Vector3.one;
 
         Vector3 pos = transform.position;
         if (ingredients.Count > 0) // 아래에 다른 재료가 있다면
         {
-            Transform under = transform.GetChild(transform.childCount - 1);
+            Transform under = transform.GetChild(transform.childCount - 2);
             SpriteRenderer underSR = under.GetComponent<SpriteRenderer>();
-            float underHeight = underSR.size.y;
+            float underHeight = underSR.bounds.size.y;
+
             if (ingredient == Ingredient.Cheese)
-                pos = underSR.transform.position + new Vector3(0, underHeight * 0.2f, 0);
+                pos = under.transform.position + new Vector3(0, underHeight * 0.2f, 0);
+            else if (ingredient == Ingredient.TopBread)
+                pos = under.transform.position + new Vector3(0, underHeight * 0.2f + y * 0.1f, 0);
             else
-                pos = under.transform.position + new Vector3(0, underHeight * 0.2f + height * 0.25f, 0);
+                pos = under.transform.position + new Vector3(0, underHeight * 0.5f, 0);
             sr.sortingOrder = underSR.sortingOrder + 1;
         }
-        go.transform.SetParent(transform);
-        go.transform.position = pos;
 
+        go.transform.position = pos;
         ingredients.Enqueue(ingredient); // 큐에 추가
     }
 
@@ -51,7 +56,7 @@ public class Hamburger : MonoBehaviour
             if (ingredient == Ingredient.Cheese)
                 pos = underSR.transform.position + new Vector3(0, underHeight * 0.2f * value, 0);
             else
-                pos = under.transform.position + new Vector3(0, underHeight * 0.2f * value + height * 0.3f * value, 0);
+                pos = under.transform.position + new Vector3(0, underHeight * 0.3f * value + height * 0.35f * value, 0);
         }
         go.transform.SetParent(transform);
         go.transform.position = pos;
@@ -61,7 +66,7 @@ public class Hamburger : MonoBehaviour
 
     public void Discard() //현재 햄버거 재료 모두 destroy
     {
-        for(int i=0; i < ingredients.Count; i++)
+        for (int i = 0; i < ingredients.Count; i++)
         {
             Destroy(gameObject.transform.GetChild(i).gameObject);
         }
