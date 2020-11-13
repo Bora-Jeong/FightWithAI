@@ -28,7 +28,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void ServeSound()
     {
-        print("serve");
+
         uiAudio.clip = serve;
         uiAudio.Play();
     }

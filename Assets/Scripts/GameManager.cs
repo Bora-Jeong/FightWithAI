@@ -65,6 +65,7 @@ public class GameManager : Singleton<GameManager>
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
     private int _hammerChance = 1; // 깡 찬스
+    private int _aiDisturbCount = 1;
     private float _aiSpeed = 2;
 
     public int playerScore
@@ -74,6 +75,13 @@ public class GameManager : Singleton<GameManager>
         {
             _playerScore = value;
             _playerScoreText.text = $"{_playerScore}";
+            if(_aiScore < _playerScore)
+            {
+                if(_aiDisturbCount > 0 && Random.Range(0,5) < 1)
+                {
+                    HideRecipe(); // 방해공작
+                }
+            }
         }
     }
 
@@ -155,6 +163,7 @@ public class GameManager : Singleton<GameManager>
         aiScore = 0;
         _aiTalkTime = _aiTalkTerm;
         _hammerChance = 1;
+        _aiDisturbCount = 1;
         playerHamburger.Discard();
         aiHamburger.Discard();
         RefreshRecipe();
@@ -175,6 +184,7 @@ public class GameManager : Singleton<GameManager>
                 if(_ai.isWorking) _aiTalk.Show();
                 _aiTalkTime = _aiTalkTerm;
             }
+            
             yield return null;
         }
 
@@ -191,6 +201,9 @@ public class GameManager : Singleton<GameManager>
 
     private void HideRecipe()
     {
+        print("방해공작");
+        _aiDisturbCount--;
+        
 
     }
 
