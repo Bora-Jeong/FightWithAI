@@ -38,6 +38,34 @@ public class Hamburger : MonoBehaviour
         ingredients.Enqueue(ingredient); // 큐에 추가
     }
 
+    public Vector3 GetDestination(Ingredient ingredient, out GameObject go) // AI용
+    {
+        go = new GameObject();
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sortingLayerName = "Hamburger";
+        sr.sprite = GameManager.instance.GetIngredientSprite(ingredient, true);
+
+        float y = sr.bounds.size.y;
+        go.transform.SetParent(transform);
+        go.transform.localScale = Vector3.one;
+
+        Vector3 pos = transform.position;
+        if (ingredients.Count > 0) // 아래에 다른 재료가 있다면
+        {
+            Transform under = transform.GetChild(transform.childCount - 2);
+            SpriteRenderer underSR = under.GetComponent<SpriteRenderer>();
+            float underHeight = underSR.bounds.size.y;
+
+            if (ingredient == Ingredient.Cheese)
+                pos = under.transform.position + new Vector3(0, underHeight * 0.5f, 0);
+            else
+                pos = under.transform.position + new Vector3(0, underHeight, 0);
+        }
+
+        ingredients.Enqueue(ingredient);
+        return pos;
+    }
+
     public void StackIngredientUI(Ingredient ingredient)
     {
         GameObject go = new GameObject();

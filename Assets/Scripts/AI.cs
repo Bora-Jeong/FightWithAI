@@ -10,7 +10,8 @@ public class AI : MonoBehaviour
     float time = 0f;
     private Animator animator;
     Hamburger curHamburger;
-    private bool isWorking = false;
+    private Ingredient curIngredient;
+    private bool isWorking;
 
     private void Awake()
     {
@@ -36,7 +37,7 @@ public class AI : MonoBehaviour
         animator.SetBool("Working", false);
     }
 
-    public void GrabIngredient() // 재료 집기
+    public void GrabIngredient() // 재료 짚기
     {
         if (curHamburger.ingredients.Count == 0)
         {
@@ -44,14 +45,17 @@ public class AI : MonoBehaviour
             curHamburger = GameManager.instance.GetAiRecipe();
         }
 
-        Ingredient ingredient = curHamburger.ingredients.Peek();
-        hand.sprite = GameManager.instance.GetIngredientSprite(ingredient, true);
+        curIngredient = curHamburger.ingredients.Dequeue();
+        hand.sprite = GameManager.instance.GetIngredientSprite(curIngredient, true);
     }
 
     public void OutIngredient() // 재료 놓기
     {
+        Vector3 dest = GameManager.instance.aiHamburger.GetDestination(curIngredient, out GameObject go);
+        go.transform.position = hand.transform.position;
         hand.sprite = null;
-        GameManager.instance.aiHamburger.StackIngredient(curHamburger.ingredients.Dequeue(), true);
+
+        LeanTween.moveY(go, dest.y, 0.3f);
     }
 
     void Update()
