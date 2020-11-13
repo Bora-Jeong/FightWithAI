@@ -5,31 +5,34 @@ using UnityEngine;
 public class AI : MonoBehaviour
 {
 
-    float speed = 1f; // 쌓는 속도
+    float speed = 3f; // 쌓는 속도
 
 
     float time = 0f;
 
     // Update is called once per frame
     Hamburger curHamburger;
-   
+
+
+    private void Start()
+    {
+        curHamburger = GameManager.instance.GetAiRecipe();
+  
+    }
 
     void Update()
     {
         time += Time.deltaTime;
 
-        if(curHamburger == null)
-        {
-            curHamburger = GameManager.instance.GetAiRecipe();
-        }
  
         if(time > speed)
         {
             time = 0;
             if (curHamburger.ingredients.Count == 0)
             {
-                curHamburger = null;
                 GameManager.instance.ServeHamburger_ai();
+                curHamburger = GameManager.instance.GetAiRecipe();
+                print(curHamburger.ingredients.Count);
             }
             else
             {

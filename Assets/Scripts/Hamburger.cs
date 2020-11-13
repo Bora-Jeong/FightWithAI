@@ -15,7 +15,7 @@ public class Hamburger : MonoBehaviour
         sr.sprite = GameManager.instance.GetIngredientSprite(ingredient);
         float height = sr.size.y;
 
-        Vector3 pos = Vector3.zero;
+        Vector3 pos = transform.position;
         if (ingredients.Count > 0) // 아래에 다른 재료가 있다면
         {
             Transform under = transform.GetChild(transform.childCount - 1);
