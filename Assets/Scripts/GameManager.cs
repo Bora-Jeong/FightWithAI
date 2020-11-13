@@ -39,6 +39,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Text _timeText;
     [SerializeField] Text _playerScoreText;
     [SerializeField] Text _aiScoreText;
+    [SerializeField] Button HammerButton;
 
     [SerializeField] Transform _recipeRoot;
     [SerializeField] Transform _aiRecipeRoot;
@@ -46,6 +47,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Sprite _aiRecipe;
     [SerializeField] AITalk _aiTalk;
     [SerializeField] AI _ai;
+    
 
     private int _day;
     private float _totalTime;
@@ -173,6 +175,7 @@ public class GameManager : Singleton<GameManager>
         _aiTalkTime = _aiTalkTerm;
         _hammerChance = 1;
         _aiDisturbCount = 1;
+        HammerButton.interactable = true;
         playerHamburger.Discard();
         aiHamburger.Discard();
         RefreshRecipe();
