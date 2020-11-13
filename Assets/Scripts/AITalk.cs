@@ -15,6 +15,9 @@ public class AITalk : MonoBehaviour
     private AudioClip[] sounds;
     [SerializeField]
     private string[] success;
+    [SerializeField]
+    private AudioClip[] success_sounds;
+
     AudioSource audio;
 
     private bool isShowing = false;
