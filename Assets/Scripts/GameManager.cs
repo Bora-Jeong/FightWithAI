@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Transform _recipeRoot;
     [SerializeField] Transform _aiRecipeRoot;
     [SerializeField] GameObject _recipe;
+    [SerializeField] Sprite _aiRecipe;
     [SerializeField] AITalk _aiTalk;
     [SerializeField] AI _ai;
 
@@ -231,6 +232,7 @@ public class GameManager : Singleton<GameManager>
             _recipeQ.Enqueue(hamburger);
 
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
+            copy.GetComponent<Image>().sprite = _aiRecipe;
             copy.transform.localScale = Vector3.one;
             copy.transform.localPosition = new Vector3(0, -30, 0);
             Hamburger aiBurger = copy.GetComponentInChildren<Hamburger>();
