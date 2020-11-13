@@ -23,6 +23,7 @@ public enum Ingredient
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] GameObject _lobbyPanel;
     [SerializeField] DialoguePanel _dialoguePanel;
     [SerializeField] GameObject _gamePanel;
     [SerializeField] GameEndPanel _gameEndPanel;
@@ -116,17 +117,15 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-
-        //StartCoroutine(StartPrologue());
-
+        _lobbyPanel.gameObject.SetActive(true);
+        _dialoguePanel.gameObject.SetActive(false);
+        _gamePanel.gameObject.SetActive(false);
 
         // 임시코드 프롤로그 시작 안하고 바로 게임 시작
-        _dialoguePanel.gameObject.SetActive(false);
-        _gamePanel.gameObject.SetActive(true);
-        RoundStart(1, 60f);
-
+       // _dialoguePanel.gameObject.SetActive(false);
+       // _gamePanel.gameObject.SetActive(true);
+       // RoundStart(1, 60f);
         //임시 코드
-
     }
 
     private void Update()
@@ -137,11 +136,17 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void StartGameButton()
+    {
+        _lobbyPanel.gameObject.SetActive(false);
+        StartCoroutine(StartPrologue());
+    }
+
     IEnumerator StartPrologue()  // 프롤로그 시작
     {
-       
         _gamePanel.gameObject.SetActive(false);
         _dialoguePanel.gameObject.SetActive(true);
+
         for (int i = 0; i < _dialogues.Length; i++)
         {
             _dialoguePanel.Set(_prologueBG[_dialogues[i].bgIndex], _dialogues[i].content);

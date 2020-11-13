@@ -1492,6 +1492,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63743297}
     m_Modifications:
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1735968159}
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002922876871682806, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3002922877680014120, guid: 63936a6dda1960543b23f2e5f60bc7a7,
         type: 3}
       propertyPath: m_Name
@@ -1612,6 +1642,12 @@ PrefabInstance:
 --- !u!224 &1504568875 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3002922877680014121, guid: 63936a6dda1960543b23f2e5f60bc7a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1504568874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1504568876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3002922877680014120, guid: 63936a6dda1960543b23f2e5f60bc7a7,
     type: 3}
   m_PrefabInstance: {fileID: 1504568874}
   m_PrefabAsset: {fileID: 0}
@@ -1836,6 +1872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826605c87f276334b82a968d0dcd6587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lobbyPanel: {fileID: 1504568876}
   _dialoguePanel: {fileID: 1554161988}
   _gamePanel: {fileID: 1536202553}
   _gameEndPanel: {fileID: 1529002728}
