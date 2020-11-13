@@ -73,7 +73,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             _playerScore = value;
-            _playerScoreText.text = $"Score {_playerScore}";
+            _playerScoreText.text = $"{_playerScore}";
         }
     }
 
@@ -83,7 +83,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             _aiScore = value;
-            _aiScoreText.text = $"Score {_aiScore}";
+            _aiScoreText.text = $"{_aiScore}";
             if(_aiScore % 3 == 0 && _aiScore !=0)
             {
                 _aiTalk.SuccessShow();
