@@ -39,6 +39,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Text _aiScoreText;
 
     [SerializeField] Transform _recipeRoot;
+    [SerializeField] Transform _aiRecipeRoot;
     [SerializeField] GameObject _recipe;
 
     private int _day;
@@ -51,7 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger playerHamburger;
 
-
+    private Queue<Hamburger> _aiRecipeQ = new Queue<Hamburger>(); // AI의 주문서들
 
     public bool isPlaying { get; private set; } // 게임 중?
     public int playerScore
@@ -149,21 +150,47 @@ public class GameManager : Singleton<GameManager>
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
             hamburger.transform.SetParent(recipe.transform);
-            hamburger.transform.localPosition = new Vector3(0, -2f, 0);
-            Debug.Log(recipe.GetComponent<SpriteRenderer>().size.x);
-            recipe.transform.localPosition = new Vector3(_recipeQ.Count * recipe.GetComponent<SpriteRenderer>().size.x  + _recipeQ.Count * 2f, 0, 0);
+            hamburger.transform.localPosition = new Vector3(0,  -30, 0);
+            GameObject copy = Instantiate(recipe, _aiRecipeRoot);
+            copy.transform.localPosition = new Vector3(0, -30, 0);
             _recipeQ.Enqueue(hamburger);
+            _aiRecipeQ.Enqueue(hamburger);
         }
     }
+
+    public bool IsRightHamburger(Hamburger made) // 플레이어가 만든 햄버거가 맞게 만들었는지
+    {
+        Queue<Ingredient> madeQ = made.ingredients;
+        Hamburger refBurger = _recipeQ.Dequeue(); // 레시피 제일 앞 버거
+
+        bool success = true;
+        while(madeQ.Count > 0 && refBurger.ingredients.Count > 0)
+        {
+            if(madeQ.Dequeue() != refBurger.ingredients.Dequeue())
+            {
+                success = false;
+                break;
+            }
+        }
+
+        if (madeQ.Count > 0 || refBurger.ingredients.Count > 0)
+            success = false;
+
+        Destroy(refBurger.transform.parent.gameObject);
+        // 새로 레시피 추가
+
+        return success;
+    }
+
 
     private Hamburger GetRandomHamburger()
     {
         Hamburger hamburger = new GameObject("Hamburger").AddComponent<Hamburger>();
         int count = Random.Range(_day + 1, _day + 3); // 1일차 최소 2 , 최대 3개
-        hamburger.StackIngredient(Ingredient.BottomBread);
+        hamburger.StackIngredientUI(Ingredient.BottomBread);
         for (int i = 0; i < count; i++)
-            hamburger.StackIngredient((Ingredient)Random.Range(1, 5));
-        hamburger.StackIngredient(Ingredient.TopBread);
+            hamburger.StackIngredientUI((Ingredient)Random.Range(1, 5));
+        hamburger.StackIngredientUI(Ingredient.TopBread);
         return hamburger;
     }
 
