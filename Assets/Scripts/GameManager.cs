@@ -104,12 +104,12 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        //StartCoroutine(StartPrologue());
+        StartCoroutine(StartPrologue());
 
         // 임시코드 프롤로그 시작 안하고 바로 게임 시작
-        _dialoguePanel.gameObject.SetActive(false);
-        _gamePanel.gameObject.SetActive(true);
-        RoundStart(1, 60f);
+        //_dialoguePanel.gameObject.SetActive(false);
+        //_gamePanel.gameObject.SetActive(true);
+        //RoundStart(1, 60f);
         // 임시 코드
     }
 
