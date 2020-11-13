@@ -21,7 +21,7 @@ public class GameEndPanel : MonoBehaviour
             ClearFailText.text = "<Clear>";
             nextRoundButton.gameObject.SetActive(true);
             success.SetActive(true);
-            fail.SetActive(fail);
+            fail.SetActive(false);
         }
         else
         {
