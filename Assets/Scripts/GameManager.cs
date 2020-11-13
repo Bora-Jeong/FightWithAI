@@ -54,6 +54,8 @@ public class GameManager : Singleton<GameManager>
 
     private Queue<Hamburger> _aiRecipeQ = new Queue<Hamburger>(); // AI의 주문서들
 
+    public Hamburger aiHamburger;
+
     public bool isPlaying { get; private set; } // 게임 중?
     public int playerScore
     {
