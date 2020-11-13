@@ -64,22 +64,7 @@ public class GameManager : Singleton<GameManager>
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
 
-    private float _aiSpeed = 3;
-    public float aiSpeed {
-        get
-        {
-            return _aiSpeed;
-        }
-        set
-        {
-            _aiSpeed = value;
-            if(_aiSpeed < 0.5f)
-            {
-                _aiSpeed = 0.5f;
-            }
-        }
-    
-    } // ai가 재료 하나를 쌓는 시간
+    private float _aiSpeed = 1;
 
     public int playerScore
     {
@@ -140,7 +125,7 @@ public class GameManager : Singleton<GameManager>
 
     public void nextRound()
     {
-        aiSpeed -= aiSpeed * 0.1f;
+        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f,  2f);
         RoundStart(_day + 1, _totalTime);
     }
 
@@ -163,7 +148,7 @@ public class GameManager : Singleton<GameManager>
         RefreshRecipe();
 
         isPlaying = true;
-        _ai.StartWork();
+        _ai.StartWork(_aiSpeed);
         StartCoroutine(GameSchedulling());
     }
 

@@ -23,11 +23,12 @@ public class AI : MonoBehaviour
         curHamburger = GameManager.instance.GetAiRecipe();
     }
 
-    public void StartWork()
+    public void StartWork(float speed)
     {
         isWorking = true;
         curHamburger = GameManager.instance.GetAiRecipe();
         animator.SetBool("Working", true);
+        animator.speed = speed;
     }
 
     public void StopWork()
@@ -37,7 +38,7 @@ public class AI : MonoBehaviour
         animator.SetBool("Working", false);
     }
 
-    public void GrabIngredient() // 재료 짚기
+    public void GrabIngredient() // 재료 집기
     {
         if (curHamburger.ingredients.Count == 0)
         {
