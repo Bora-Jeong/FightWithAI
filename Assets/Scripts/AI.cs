@@ -8,8 +8,9 @@ public class AI : MonoBehaviour
     private SpriteRenderer hand;
     [SerializeField]
     private GameObject redLight;
+    [SerializeField]
+    private GameObject darkLight;
 
-    float time = 0f;
     private Animator animator;
     Hamburger curHamburger;
     private Ingredient curIngredient;
@@ -36,6 +37,7 @@ public class AI : MonoBehaviour
     public void StopWork()
     {
         curHamburger = null;
+        hand.sprite = null;
         animator.SetBool("Working", false);
     }
 
@@ -50,11 +52,13 @@ public class AI : MonoBehaviour
 
         animator.speed = 0;
         redLight.SetActive(true);
+        darkLight.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 
         animator.speed = speed;
         redLight.SetActive(false);
+        darkLight.SetActive(false);
     }
 
     public void GrabIngredient() // 재료 집기
