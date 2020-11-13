@@ -60,7 +60,7 @@ public class AI : MonoBehaviour
         redLight.SetActive(true);
         darkLight.SetActive(true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
 
         animator.speed = speed;
         redLight.SetActive(false);
