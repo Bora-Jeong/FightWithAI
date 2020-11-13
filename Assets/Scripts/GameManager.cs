@@ -201,14 +201,16 @@ public class GameManager : Singleton<GameManager>
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
             hamburger.transform.SetParent(recipe.transform);
-            hamburger.transform.localScale = Vector3.one * 1.2f;
+            hamburger.transform.localScale = Vector3.one * 1f;
             hamburger.transform.localPosition = new Vector3(0, -40, 0);
             _recipeQ.Enqueue(hamburger);
 
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
-            copy.transform.localScale = Vector3.one * 0.6f;
+            copy.transform.localScale = Vector3.one;
             copy.transform.localPosition = new Vector3(0, -30, 0);
             Hamburger aiBurger = copy.GetComponentInChildren<Hamburger>();
+            aiBurger.transform.localScale = Vector3.one * 0.5f;
+            aiBurger.transform.localPosition = new Vector3(0, -20, 0);
             aiBurger.ingredients = new Queue<Ingredient>(hamburger.ingredients);
             _aiRecipeQ.Enqueue(aiBurger);
         }
