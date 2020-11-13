@@ -145,7 +145,7 @@ public class GameManager : Singleton<GameManager>
 
     private void RefreshRecipe()
     {
-        for(int i = 0; i < 6; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
+        for(int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
@@ -159,25 +159,27 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public bool IsRightHamburger(Hamburger made) // 플레이어가 만든 햄버거가 맞게 만들었는지
+    public bool OnServingButton() // 플레이어가 만든 햄버거가 맞게 만들었는지
     {
-        Queue<Ingredient> madeQ = made.ingredients;
-        Hamburger refBurger = _recipeQ.Dequeue(); // 레시피 제일 앞 버거
+        Queue<Ingredient> player = playerHamburger.ingredients;
+        Hamburger recipe = _recipeQ.Dequeue(); // 레시피 제일 앞 버거
 
         bool success = true;
-        while(madeQ.Count > 0 && refBurger.ingredients.Count > 0)
+        while(player.Count > 0 && recipe.ingredients.Count > 0)
         {
-            if(madeQ.Dequeue() != refBurger.ingredients.Dequeue())
+            if(player.Dequeue() != recipe.ingredients.Dequeue())
             {
                 success = false;
                 break;
             }
         }
 
-        if (madeQ.Count > 0 || refBurger.ingredients.Count > 0)
+        if (player.Count > 0 || recipe.ingredients.Count > 0)
             success = false;
 
-        Destroy(refBurger.transform.parent.gameObject);
+        playerHamburger.ingredients.Clear();
+
+        Destroy(recipe.transform.parent.gameObject);
         // 새로 레시피 추가
 
         return success;
