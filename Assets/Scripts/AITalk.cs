@@ -15,8 +15,12 @@ public class AITalk : MonoBehaviour
     private AudioClip[] sounds;
     [SerializeField]
     private string[] success;
+
     [SerializeField]
     private AudioClip[] success_sounds;
+
+    [SerializeField]
+    private AudioClip pause_sound;
 
     AudioSource audio;
 
@@ -26,6 +30,11 @@ public class AITalk : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+    }
+    public void PauseShow()
+    {
+        StartCoroutine(PauseTalking());
+
     }
     public void Show()
     {
@@ -63,6 +72,19 @@ public class AITalk : MonoBehaviour
         talk.SetActive(false);
         isShowing = false;
     }
+    IEnumerator PauseTalking()
+    {
+        isShowing = true;
+        talk.SetActive(true);
+        
+        text.text = "삐리릭. 시스템 이상.";
+        audio.clip = pause_sound;
+        audio.Play();
+        yield return new WaitForSeconds(3f);
+        talk.SetActive(false);
+        isShowing = false;
+    }
+
 
 
 }

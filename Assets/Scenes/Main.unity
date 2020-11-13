@@ -1161,7 +1161,7 @@ MonoBehaviour:
   serve: {fileID: 8300000, guid: df0fde146774e2b4c846a0c6bbbecffd, type: 3}
   dump: {fileID: 8300000, guid: 3218f1f4109c84243b28ea938db680d5, type: 3}
   hammer: {fileID: 8300000, guid: 692bfb931d72f7949931a364603a3b1b, type: 3}
-  buttonClick: {fileID: 0}
+  buttonClick: {fileID: 8300000, guid: f87293202e5559545a91814b13c505c3, type: 3}
   typing: {fileID: 8300000, guid: d87baac32c3e58c44ae8d56b60bda817, type: 3}
 --- !u!4 &1283275938
 Transform:
@@ -2237,6 +2237,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 321974262042138986, guid: efd58e421e945114c838f006c15e0045,
+        type: 3}
+      propertyPath: pause_sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4324863afb22605408d46b7e5a8bbf68, type: 3}
     - target: {fileID: 321974262490074416, guid: efd58e421e945114c838f006c15e0045,
         type: 3}
       propertyPath: m_LocalPosition.x

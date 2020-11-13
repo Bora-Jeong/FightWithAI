@@ -338,6 +338,7 @@ public class GameManager : Singleton<GameManager>
         {
             _ai.Pause();
             _hammerChance--;
+            _aiTalk.PauseShow();
         }
     }
 
