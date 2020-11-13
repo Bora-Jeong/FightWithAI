@@ -13,18 +13,13 @@ public class AudioManager : Singleton<AudioManager>
     AudioSource trayAudio;
 
     [Header("Sound Clip")]
+    
     [SerializeField]
     AudioClip drop_ingredient;
     [SerializeField]
     AudioClip serve;
     [SerializeField]
     AudioClip dump;
-
-    private void PlaySound()
-    {
-       
-        
-    }
 
     public void DropSound()
     {
@@ -33,13 +28,19 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void ServeSound()
     {
+        print("serve");
         uiAudio.clip = serve;
         uiAudio.Play();
     }
     public void DumpSound()
     {
-        uiAudio.clip = dump;
-        if(!uiAudio.isPlaying) uiAudio.Play();
+
+        if (!uiAudio.isPlaying)
+        {
+            uiAudio.clip = dump;
+            uiAudio.Play();
+        }
+
     }
 
 }

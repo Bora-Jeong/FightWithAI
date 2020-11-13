@@ -247,6 +247,7 @@ public class GameManager : Singleton<GameManager>
         {
             _recipeQ.Dequeue();
             playerScore++;
+            AudioManager.instance.ServeSound();
 
             _recipeRoot.GetComponent<HorizontalLayoutGroup>().enabled = false;
             Transform bill = recipe.transform.parent;
