@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
     public bool isPlaying { get; private set; } // 게임 중?
     private int _hammerChance = 1; // 깡 찬스
     private int _aiDisturbCount = 1;
-    private float _aiSpeed = 2;
+    private float _aiSpeed = 2.5f;
 
     public int playerScore
     {
@@ -131,7 +131,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.Space)) // 디버그용
         {
-            //HideRecipe();
+            HideRecipe();
         }
     }
 
