@@ -817,7 +817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
   redLight: {fileID: 0}
-  _darkMaterial: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,7 +2695,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1989702161}
   redLight: {fileID: 1516356600}
-  _darkMaterial: {fileID: 2100000, guid: 483d781fe833a954d8c277be913a8b24, type: 2}
 --- !u!331 &1472288428
 SpriteMask:
   m_ObjectHideFlags: 0

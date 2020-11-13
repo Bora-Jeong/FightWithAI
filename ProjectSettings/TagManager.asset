@@ -47,3 +47,6 @@ TagManager:
   - name: Hamburger
     uniqueID: 2445989227
     locked: 0
+  - name: LIght
+    uniqueID: 4033030927
+    locked: 0
