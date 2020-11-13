@@ -4779,7 +4779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 5
-  ingredientTransform: {fileID: 8840872819782826677}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!61 &2583071208197508647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 3
-  ingredientTransform: {fileID: 8840872821273992815}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!1 &2583071208471789796
 GameObject:
   m_ObjectHideFlags: 0
@@ -5231,7 +5231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 0
-  ingredientTransform: {fileID: 8840872820226356482}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!61 &2583071209025517353
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5471,7 +5471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 2
-  ingredientTransform: {fileID: 8840872821392336291}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!1 &2583071209723202170
 GameObject:
   m_ObjectHideFlags: 0
@@ -5554,7 +5554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 4
-  ingredientTransform: {fileID: 8840872819998807742}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!61 &2583071210117129193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5677,7 +5677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 1
-  ingredientTransform: {fileID: 8840872820087888342}
+  ingredientTransform: {fileID: 8840872820483689030}
 --- !u!61 &2583071210257009121
 BoxCollider2D:
   m_ObjectHideFlags: 0
