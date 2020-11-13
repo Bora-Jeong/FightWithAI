@@ -5,9 +5,7 @@ using UnityEngine;
 public class AI : MonoBehaviour
 {
 
-    float speed = 3f; // 쌓는 속도
-
-
+ 
     float time = 0f;
 
     // Update is called once per frame
@@ -22,10 +20,17 @@ public class AI : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isPlaying)
+        {
+            curHamburger = null;
+            return;
+        }
+
         time += Time.deltaTime;
 
- 
-        if(time > speed)
+        if(curHamburger == null) curHamburger = GameManager.instance.GetAiRecipe();
+
+        if (time > GameManager.instance.aiSpeed)
         {
             time = 0;
             if (curHamburger.ingredients.Count == 0)

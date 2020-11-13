@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] DialoguePanel _dialoguePanel;
     [SerializeField] GameObject _gamePanel;
+    [SerializeField] GameObject _gameEndPanel;
     [SerializeField] Sprite[] _ingredientSprites;
 
     [Header("Prologue")]
@@ -60,6 +61,23 @@ public class GameManager : Singleton<GameManager>
     private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
+
+    private float _aiSpeed = 3;
+    public float aiSpeed {
+        get
+        {
+            return _aiSpeed;
+        }
+        set
+        {
+            _aiSpeed = value;
+            if(_aiSpeed < 0.5f)
+            {
+                _aiSpeed = 0.5f;
+            }
+        }
+    
+    } // ai가 재료 하나를 쌓는 시간
 
     public int playerScore
     {
@@ -118,6 +136,12 @@ public class GameManager : Singleton<GameManager>
         RoundStart(1, 60f);
     }
 
+    public void nextRound()
+    {
+        aiSpeed -= aiSpeed * 0.1f;
+        RoundStart(_day + 1, 60);
+    }
+
     private void RoundStart(int day, float time) // 라운드 시작
     {
         _day = day;
@@ -154,6 +178,8 @@ public class GameManager : Singleton<GameManager>
     private void GameOver() // 게임 오버
     {
         isPlaying = false;
+        _gameEndPanel.SetActive(true);
+
     }
 
     private void RefreshRecipe()
