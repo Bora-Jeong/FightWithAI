@@ -12,6 +12,8 @@ public class AI : MonoBehaviour
     private GameObject darkLight;
     [SerializeField]
     private Animator robotHead_animator;
+    [SerializeField]
+    private Hammer hammer;
 
     private Animator animator;
     Hamburger curHamburger;
@@ -53,6 +55,7 @@ public class AI : MonoBehaviour
         float speed = animator.speed;
 
         robotHead_animator.SetBool("broken", true);
+        hammer.Show();
         animator.speed = 0;
         redLight.SetActive(true);
         darkLight.SetActive(true);

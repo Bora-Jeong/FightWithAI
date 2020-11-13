@@ -53,3 +53,6 @@ TagManager:
   - name: LIght
     uniqueID: 4033030927
     locked: 0
+  - name: Hammer
+    uniqueID: 2355885961
+    locked: 0

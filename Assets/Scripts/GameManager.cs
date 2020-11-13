@@ -127,6 +127,14 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
+    }
+
     IEnumerator StartPrologue()  // 프롤로그 시작
     {
        
@@ -205,7 +213,7 @@ public class GameManager : Singleton<GameManager>
     {
         print("방해공작");
         _aiDisturbCount--;
-
+        _recipeQ.Peek().GetComponentInParent<Recipe>().Hide();
     }
 
     private void RefreshRecipe()
@@ -300,10 +308,8 @@ public class GameManager : Singleton<GameManager>
     {
         if(_hammerChance > 0)
         {
-            AudioManager.instance.hammerSound();
             _ai.Pause();
             _hammerChance--;
-           
         }
     }
 
