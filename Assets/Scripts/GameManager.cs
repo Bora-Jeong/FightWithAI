@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Transform _aiRecipeRoot;
     [SerializeField] GameObject _recipe;
     [SerializeField] AITalk _aiTalk;
+    [SerializeField] AI _ai;
 
     private int _day;
     private float _totalTime;
@@ -155,13 +156,13 @@ public class GameManager : Singleton<GameManager>
         remainTime = _totalTime;
         playerScore = 0;
         aiScore = 0;
-        _recipeQ.Clear();
         _aiTalkTime = _aiTalkTerm;
         playerHamburger.Discard();
         aiHamburger.Discard();
+        RefreshRecipe();
 
         isPlaying = true;
-        RefreshRecipe();
+        _ai.StartWork();
         StartCoroutine(GameSchedulling());
     }
 
@@ -185,13 +186,24 @@ public class GameManager : Singleton<GameManager>
     private void GameOver() // 게임 오버
     {
         isPlaying = false;
+        _ai.StopWork();
         _gameEndPanel.gameObject.SetActive(true);
         _gameEndPanel.SetText(_day, playerScore, aiScore);
-
     }
 
     private void RefreshRecipe()
     {
+        while(_recipeQ.Count > 0)
+        {
+            Hamburger temp = _recipeQ.Dequeue();
+            DestroyImmediate(temp.transform.parent.gameObject);
+        }
+        while(_aiRecipeQ.Count > 0)
+        {
+            Hamburger temp = _aiRecipeQ.Dequeue();
+            DestroyImmediate(temp.transform.parent.gameObject);
+        }
+
         for (int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();

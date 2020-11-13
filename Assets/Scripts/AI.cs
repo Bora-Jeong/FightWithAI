@@ -4,27 +4,47 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-
- 
     float time = 0f;
-
-    // Update is called once per frame
+    private Animator animator;
     Hamburger curHamburger;
+    private bool isWorking = false;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
         curHamburger = GameManager.instance.GetAiRecipe();
-  
+    }
+
+    public void StartWork()
+    {
+        isWorking = true;
+        animator.SetBool("Working", true);
+    }
+
+    public void StopWork()
+    {
+        isWorking = false;
+        curHamburger = null;
+        animator.SetBool("Working", false);
+    }
+
+    public void GrabIngredient()
+    {
+
+    }
+
+    public void OutIngredient()
+    {
+
     }
 
     void Update()
     {
-        if (!GameManager.instance.isPlaying)
-        {
-            curHamburger = null;
-            return;
-        }
+        if (!isWorking) return;
 
         time += Time.deltaTime;
 
@@ -37,13 +57,11 @@ public class AI : MonoBehaviour
             {
                 GameManager.instance.ServeHamburger_ai();
                 curHamburger = GameManager.instance.GetAiRecipe();
-                print(curHamburger.ingredients.Count);
             }
             else
             {
                 GameManager.instance.aiHamburger.StackIngredient(curHamburger.ingredients.Dequeue());
-            }
-           
+            }          
      
         }
     }
