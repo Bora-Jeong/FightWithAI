@@ -106,13 +106,13 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
 
-        //StartCoroutine(StartPrologue());
+        StartCoroutine(StartPrologue());
 
 
         // 임시코드 프롤로그 시작 안하고 바로 게임 시작
-        _dialoguePanel.gameObject.SetActive(false);
-        _gamePanel.gameObject.SetActive(true);
-        RoundStart(1, 60f);
+        //_dialoguePanel.gameObject.SetActive(false);
+        //_gamePanel.gameObject.SetActive(true);
+        //RoundStart(1, 60f);
 
         //임시 코드
 
@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < _dialogues.Length; i++)
         {
             _dialoguePanel.Set(_prologueBG[_dialogues[i].bgIndex], _dialogues[i].content);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2.5f);
         }
 
         _dialoguePanel.gameObject.SetActive(false);
