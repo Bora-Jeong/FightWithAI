@@ -1369,7 +1369,12 @@ MonoBehaviour:
   - "\uC218\uC900 \uBBF8\uB2EC."
   - "\uB9E4\uC6B0 \uD615\uD3B8 \uC5C6\uB294 \uAC83\uC73C\uB85C \uD310\uB2E8\uB428."
   - "\uC0AC\uC9C1 \uAD8C\uACE0. \uC0AC\uC9C1 \uAD8C\uACE0."
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 371e4622447a0d848accc52a2b4a34a4, type: 3}
+  - {fileID: 8300000, guid: 692ed8eb00c54814d9f94cbc4afe39b4, type: 3}
+  - {fileID: 8300000, guid: d123cfdd5be1b1d4d91fb3ac06d53533, type: 3}
+  - {fileID: 8300000, guid: 98a5e1d60b030304ebb57c861e5a09c8, type: 3}
+  - {fileID: 8300000, guid: c73177b6b99c58445b6b8e68a9176359, type: 3}
   success:
   - "\uB0B4\uAC00 \uBC14\uB85C. \uBC84\uAC70\uD0B9."
   - "\uB09C \uD584\uBC84\uAC70\uB97C \uCC38 \uC798\uB9CC\uB4DC\uC9C0."
