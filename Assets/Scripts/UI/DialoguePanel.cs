@@ -13,6 +13,7 @@ public class DialoguePanel : MonoBehaviour
     public void Set(Sprite sprite, string content)
     {
         _background.sprite = sprite;
+        content = content.Replace("@", System.Environment.NewLine);
         _text.text = content;
     }
 }

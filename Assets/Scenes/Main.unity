@@ -1162,6 +1162,7 @@ MonoBehaviour:
   dump: {fileID: 8300000, guid: 3218f1f4109c84243b28ea938db680d5, type: 3}
   hammer: {fileID: 8300000, guid: 692bfb931d72f7949931a364603a3b1b, type: 3}
   buttonClick: {fileID: 0}
+  typing: {fileID: 8300000, guid: d87baac32c3e58c44ae8d56b60bda817, type: 3}
 --- !u!4 &1283275938
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,13 +1940,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 84ec742bd2af4f344a3431979aec92b0, type: 3}
   - {fileID: 21300000, guid: 5d0d20fc29d1ae14084879c799f947af, type: 3}
   - {fileID: 21300000, guid: ce8b3a1a4e620814e817e4da791e013b, type: 3}
+  - {fileID: 21300000, guid: 385bd12a8cfecd049866a5f43c42d60c, type: 3}
   _dialogues:
   - bgIndex: 0
-    content: "\uC2DC\uAC04\uC774 \uBC8C\uC368?"
-  - bgIndex: 0
-    content: "\uC544\uC9C1 \uBABB\uB9CC\uB4E4\uC5C8\uC5B4!!"
+    content: "\uB098\uB294 \uCF54\uB529\uC655 \uAE40\uCC30\uC2A4.@\uCF54\uB529\uC744
+      \uC655 \uC798\uD55C\uB2E4."
   - bgIndex: 1
-    content: "\uB0B4\uAC00 AI\uAC00 \uB3FC\uC57C\uC9C0!"
+    content: "\uC624\uB298\uB3C4 \uC678\uC8FC\uB97C \uBC1B\uC558\uB2E4.@\uD584\uBC84\uAC70
+      \uC870\uB9AC AI\uB97C \uC81C\uC791\uD558\uAC8C \uB418\uC5C8\uB294\uB370..."
+  - bgIndex: 2
+    content: "\uB3C4\uC800\uD788 \uB9C8\uAC10\uC744 \uBABB \uB9DE\uCD94\uACA0\uC5B4!"
+  - bgIndex: 3
+    content: "\uADF8\uB798\uC11C \uB098\uB294 .. \uBC84\uAC70\uC655 \uAE40AI\uAC00
+      \uB418\uAE30\uB85C \uD588\uB2E4.@\uBB50 .. \uC548\uB4E4\uD0A4\uBA74 \uB418\uB294
+      \uAC70 \uC544\uB2C8\uACA0\uC5B4?"
   _dayText: {fileID: 1193726301}
   _timeSlider: {fileID: 1115093525}
   _timeText: {fileID: 1740161814}
@@ -1958,6 +1966,8 @@ MonoBehaviour:
   _aiRecipe: {fileID: 21300000, guid: 1150360a78781614aa5bdaf8dcdb3c67, type: 3}
   _aiTalk: {fileID: 919438176}
   _ai: {fileID: 1472288427}
+  _intro: {fileID: 321974261794904588}
+  _introText: {fileID: 321974261794904587}
   playerHamburger: {fileID: 2583071209526213420}
   aiHamburger: {fileID: 1104804297}
 --- !u!114 &1740161814 stripped
@@ -2400,6 +2410,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd58e421e945114c838f006c15e0045, type: 3}
+--- !u!114 &321974261794904587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5666429754636550017, guid: efd58e421e945114c838f006c15e0045,
+    type: 3}
+  m_PrefabInstance: {fileID: 321974261794904586}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &321974261794904588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2773474236258074727, guid: efd58e421e945114c838f006c15e0045,
+    type: 3}
+  m_PrefabInstance: {fileID: 321974261794904586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2583071208197508646
 MonoBehaviour:
   m_ObjectHideFlags: 0

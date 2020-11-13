@@ -48,7 +48,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Sprite _aiRecipe;
     [SerializeField] AITalk _aiTalk;
     [SerializeField] AI _ai;
-    
+
+    [SerializeField] GameObject _intro;
+    [SerializeField] Text _introText;
 
     private int _day;
     private float _totalTime;
@@ -130,7 +132,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // 디버그용
+        if (Input.GetKeyDown(KeyCode.F12)) // 디버그용
         {
             HideRecipe();
         }
@@ -150,11 +152,26 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < _dialogues.Length; i++)
         {
             _dialoguePanel.Set(_prologueBG[_dialogues[i].bgIndex], _dialogues[i].content);
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(3f);
         }
         
         _dialoguePanel.gameObject.SetActive(false);
         _gamePanel.gameObject.SetActive(true);
+
+        _intro.SetActive(true);
+        string content = _introText.text;
+        _introText.text = string.Empty;
+
+        for (int i = 0; i < content.Length; i++)
+        {
+            _introText.text += content[i];
+            AudioManager.instance.TypeSound();
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        _intro.SetActive(false);
         RoundStart(1, 60f);
     }
 
