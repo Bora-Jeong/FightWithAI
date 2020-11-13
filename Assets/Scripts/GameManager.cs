@@ -163,8 +163,8 @@ public class GameManager : Singleton<GameManager>
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
             hamburger.transform.SetParent(recipe.transform);
-            hamburger.transform.localScale = Vector3.one;
-            hamburger.transform.localPosition = new Vector3(0, -30, 0);
+            hamburger.transform.localScale = Vector3.one * 1.2f;
+            hamburger.transform.localPosition = new Vector3(0, -40, 0);
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
             copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
