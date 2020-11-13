@@ -49,6 +49,10 @@ public class GameManager : Singleton<GameManager>
 
     private Queue<Hamburger> _recipeQ = new Queue<Hamburger>(); // 플레이어가 만들어야 하는 주문서들
 
+    public Hamburger playerHamburger;
+
+
+
     public bool isPlaying { get; private set; } // 게임 중?
     public int playerScore
     {
