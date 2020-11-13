@@ -165,11 +165,14 @@ public class GameManager : Singleton<GameManager>
             hamburger.transform.SetParent(recipe.transform);
             hamburger.transform.localScale = Vector3.one * 1.2f;
             hamburger.transform.localPosition = new Vector3(0, -40, 0);
+            _recipeQ.Enqueue(hamburger);
+
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
             copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
-            _recipeQ.Enqueue(hamburger);
-            _aiRecipeQ.Enqueue(copy.GetComponentInChildren<Hamburger>());
+            Hamburger aiBurger = copy.GetComponentInChildren<Hamburger>();
+            aiBurger.ingredients = new Queue<Ingredient>(hamburger.ingredients);
+            _aiRecipeQ.Enqueue(aiBurger);
         }
     }
 
