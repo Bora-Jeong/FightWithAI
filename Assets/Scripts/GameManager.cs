@@ -71,7 +71,7 @@ public class GameManager : Singleton<GameManager>
     public bool isPlaying { get; private set; } // 게임 중?
     private int _hammerChance = 1; // 깡 찬스
     private int _aiDisturbCount = 1;
-    private float _aiSpeed = 2.5f;
+    private float _aiSpeed = 4f;
 
     public int playerScore
     {
