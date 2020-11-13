@@ -171,6 +171,7 @@ public class GameManager : Singleton<GameManager>
 
         isPlaying = true;
         _ai.StartWork(_aiSpeed);
+        AudioManager.instance.restartBackgroundMusic();
         StartCoroutine(GameSchedulling());
     }
 

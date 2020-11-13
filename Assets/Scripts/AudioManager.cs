@@ -23,6 +23,10 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField]
     AudioClip hammer;
 
+    public void restartBackgroundMusic()
+    {
+        backgroundAudio.Play();
+    }
     public void DropSound()
     {
         trayAudio.clip = drop_ingredient;
