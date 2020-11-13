@@ -36,7 +36,6 @@ public class AITalk : MonoBehaviour
     {
         if (isShowing) return;
         StartCoroutine(SuccessTalking());
-
     }
 
     IEnumerator StartTalking()

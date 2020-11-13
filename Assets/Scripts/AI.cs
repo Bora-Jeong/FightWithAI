@@ -16,6 +16,8 @@ public class AI : MonoBehaviour
     private Ingredient curIngredient;
     private SpriteRenderer spriteRenderer;
 
+    public bool isWorking { get; private set; }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -29,6 +31,7 @@ public class AI : MonoBehaviour
 
     public void StartWork(float speed)
     {
+        isWorking = true;
         curHamburger = GameManager.instance.GetAiRecipe();
         animator.SetBool("Working", true);
         animator.speed = speed;
@@ -36,6 +39,7 @@ public class AI : MonoBehaviour
 
     public void StopWork()
     {
+        isWorking = false;
         curHamburger = null;
         hand.sprite = null;
         animator.SetBool("Working", false);
@@ -48,6 +52,7 @@ public class AI : MonoBehaviour
 
     IEnumerator StartPause()
     {
+        isWorking = false;
         float speed = animator.speed;
 
         animator.speed = 0;
@@ -59,6 +64,8 @@ public class AI : MonoBehaviour
         animator.speed = speed;
         redLight.SetActive(false);
         darkLight.SetActive(false);
+
+        isWorking = true;
     }
 
     public void GrabIngredient() // 재료 집기

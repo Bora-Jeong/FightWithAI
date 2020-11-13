@@ -166,7 +166,7 @@ public class GameManager : Singleton<GameManager>
             _aiTalkTime -= Time.deltaTime;
             if (_aiTalkTime <= 0) // AI가 도발하는 멘트
             {
-                _aiTalk.Show();
+                if(_ai.isWorking) _aiTalk.Show();
                 _aiTalkTime = _aiTalkTerm;
             }
             yield return null;
