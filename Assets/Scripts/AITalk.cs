@@ -32,6 +32,12 @@ public class AITalk : MonoBehaviour
         if (isShowing) return;
         StartCoroutine(StartTalking());
     }
+    public void SuccessShow()
+    {
+        if (isShowing) return;
+        StartCoroutine(SuccessTalking());
+
+    }
 
     IEnumerator StartTalking()
     {
@@ -45,5 +51,19 @@ public class AITalk : MonoBehaviour
         talk.SetActive(false);
         isShowing = false;
     }
+
+    IEnumerator SuccessTalking()
+    {
+        isShowing = true;
+        talk.SetActive(true);
+        int random = Random.Range(0, success.Length);
+        text.text = success[random];
+        audio.clip = success_sounds[random];
+        audio.Play();
+        yield return new WaitForSeconds(2f);
+        talk.SetActive(false);
+        isShowing = false;
+    }
+
 
 }

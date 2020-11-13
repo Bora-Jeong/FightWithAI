@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
 
-    private float _aiSpeed = 1;
+    private float _aiSpeed = 3;
 
     public int playerScore
     {
@@ -83,6 +83,11 @@ public class GameManager : Singleton<GameManager>
         {
             _aiScore = value;
             _aiScoreText.text = $"Score {_aiScore}";
+            if(_aiScore % 3 == 0 && _aiScore !=0)
+            {
+                _aiTalk.SuccessShow();
+                _aiTalkTime = _aiTalkTerm;
+            }
         }
     }
 
