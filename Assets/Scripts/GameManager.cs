@@ -143,6 +143,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGameButton()
     {
+        AudioManager.instance.ClickSound();
         _lobbyPanel.gameObject.SetActive(false);
         StartCoroutine(StartPrologue());
     }
