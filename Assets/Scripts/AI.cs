@@ -6,16 +6,19 @@ public class AI : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer hand;
+    [SerializeField]
+    private GameObject redLight;
 
     float time = 0f;
     private Animator animator;
     Hamburger curHamburger;
     private Ingredient curIngredient;
-    private bool isWorking;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -25,7 +28,6 @@ public class AI : MonoBehaviour
 
     public void StartWork(float speed)
     {
-        isWorking = true;
         curHamburger = GameManager.instance.GetAiRecipe();
         animator.SetBool("Working", true);
         animator.speed = speed;
@@ -33,9 +35,26 @@ public class AI : MonoBehaviour
 
     public void StopWork()
     {
-        isWorking = false;
         curHamburger = null;
         animator.SetBool("Working", false);
+    }
+
+    public void Pause() // 깡!!
+    {
+        StartCoroutine(StartPause());
+    }
+
+    IEnumerator StartPause()
+    {
+        float speed = animator.speed;
+
+        animator.speed = 0;
+        redLight.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        animator.speed = speed;
+        redLight.SetActive(false);
     }
 
     public void GrabIngredient() // 재료 집기

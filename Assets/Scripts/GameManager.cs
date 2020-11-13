@@ -63,8 +63,8 @@ public class GameManager : Singleton<GameManager>
     private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
-
-    private float _aiSpeed = 3;
+    private int _hammerChance = 1; // 깡 찬스
+    private float _aiSpeed = 2;
 
     public int playerScore
     {
@@ -148,6 +148,7 @@ public class GameManager : Singleton<GameManager>
         playerScore = 0;
         aiScore = 0;
         _aiTalkTime = _aiTalkTerm;
+        _hammerChance = 1;
         playerHamburger.Discard();
         aiHamburger.Discard();
         RefreshRecipe();
@@ -256,7 +257,11 @@ public class GameManager : Singleton<GameManager>
 
     public void OnHammerButton()
     {
-
+        if(_hammerChance > 0)
+        {
+            _ai.Pause();
+            _hammerChance--;
+        }
     }
 
     public void ServeHamburger_ai()
