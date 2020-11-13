@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager>
 
     public void nextRound()
     {
-        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f,  2f);
+        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f, 2f);
         RoundStart(_day + 1, _totalTime);
     }
 
@@ -158,7 +158,7 @@ public class GameManager : Singleton<GameManager>
         {
             remainTime -= Time.deltaTime;
             _aiTalkTime -= Time.deltaTime;
-            if(_aiTalkTime <= 0) // AI가 도발하는 멘트
+            if (_aiTalkTime <= 0) // AI가 도발하는 멘트
             {
                 _aiTalk.Show();
                 _aiTalkTime = _aiTalkTerm;
@@ -179,12 +179,12 @@ public class GameManager : Singleton<GameManager>
 
     private void RefreshRecipe()
     {
-        while(_recipeQ.Count > 0)
+        while (_recipeQ.Count > 0)
         {
             Hamburger temp = _recipeQ.Dequeue();
             DestroyImmediate(temp.transform.parent.gameObject);
         }
-        while(_aiRecipeQ.Count > 0)
+        while (_aiRecipeQ.Count > 0)
         {
             Hamburger temp = _aiRecipeQ.Dequeue();
             DestroyImmediate(temp.transform.parent.gameObject);
@@ -247,7 +247,12 @@ public class GameManager : Singleton<GameManager>
         playerHamburger.ingredients.Clear(); // 플레이어 큐 clear
         for (int i = playerHamburger.transform.childCount - 1; i >= 0; i--) // 쟁반 클리어
             Destroy(playerHamburger.transform.GetChild(i).gameObject);
-    } 
+    }
+
+    public void OnHammerButton()
+    {
+
+    }
 
     public void ServeHamburger_ai()
     {
