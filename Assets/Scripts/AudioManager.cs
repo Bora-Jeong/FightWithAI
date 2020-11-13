@@ -22,6 +22,8 @@ public class AudioManager : Singleton<AudioManager>
     AudioClip dump;
     [SerializeField]
     AudioClip hammer;
+    [SerializeField]
+    AudioClip buttonClick;
 
     public void restartBackgroundMusic()
     {
@@ -52,6 +54,11 @@ public class AudioManager : Singleton<AudioManager>
     {
         trayAudio.clip = hammer;
         trayAudio.Play();
+    }
+    public void ClickSound()
+    {
+        uiAudio.clip = buttonClick;
+        uiAudio.Play();
     }
 
 }
