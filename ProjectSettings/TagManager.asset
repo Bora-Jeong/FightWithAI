@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tray
+    uniqueID: 17275905
+    locked: 0
+  - name: Hamburger
+    uniqueID: 2445989227
+    locked: 0

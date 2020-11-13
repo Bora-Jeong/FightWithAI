@@ -38,11 +38,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Text _playerScoreText;
     [SerializeField] Text _aiScoreText;
 
+    [SerializeField] Transform _recipeRoot;
+    [SerializeField] GameObject _recipe;
+
     private int _day;
     private float _totalTime;
     private float _remainTime;
     private int _playerScore;
     private int _aiScore;
+
+    private Queue<Hamburger> _recipeQ = new Queue<Hamburger>(); // 플레이어가 만들어야 하는 주문서들
 
     public bool isPlaying { get; private set; } // 게임 중?
     public int playerScore
@@ -110,24 +115,11 @@ public class GameManager : Singleton<GameManager>
         remainTime = _totalTime;
         playerScore = 0;
         aiScore = 0;
+        _recipeQ.Clear();
 
         isPlaying = true;
+        RefreshRecipe();
         StartCoroutine(GameSchedulling());
-
-        Test();
-    }
-
-    private void Test()
-    {
-        Hamburger hamburger = new GameObject().AddComponent<Hamburger>();
-        hamburger.StackIngredient(Ingredient.BottomBread);
-        hamburger.StackIngredient(Ingredient.Patty);
-        hamburger.StackIngredient(Ingredient.Tomato);
-        hamburger.StackIngredient(Ingredient.Cheese);
-        hamburger.StackIngredient(Ingredient.Cheese);
-        hamburger.StackIngredient(Ingredient.Cabbage);
-        hamburger.StackIngredient(Ingredient.TopBread);
-        hamburger.transform.localScale = Vector3.one * 0.5f;
     }
 
     IEnumerator GameSchedulling()
@@ -144,6 +136,31 @@ public class GameManager : Singleton<GameManager>
     private void GameOver() // 게임 오버
     {
         isPlaying = false;
+    }
+
+    private void RefreshRecipe()
+    {
+        for(int i = 0; i < 6; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
+        {
+            Hamburger hamburger = GetRandomHamburger();
+            GameObject recipe = Instantiate(_recipe, _recipeRoot);
+            hamburger.transform.SetParent(recipe.transform);
+            hamburger.transform.localPosition = new Vector3(0, -2f, 0);
+            Debug.Log(recipe.GetComponent<SpriteRenderer>().size.x);
+            recipe.transform.localPosition = new Vector3(_recipeQ.Count * recipe.GetComponent<SpriteRenderer>().size.x  + _recipeQ.Count * 2f, 0, 0);
+            _recipeQ.Enqueue(hamburger);
+        }
+    }
+
+    private Hamburger GetRandomHamburger()
+    {
+        Hamburger hamburger = new GameObject("Hamburger").AddComponent<Hamburger>();
+        int count = Random.Range(_day + 1, _day + 3); // 1일차 최소 2 , 최대 3개
+        hamburger.StackIngredient(Ingredient.BottomBread);
+        for (int i = 0; i < count; i++)
+            hamburger.StackIngredient((Ingredient)Random.Range(1, 5));
+        hamburger.StackIngredient(Ingredient.TopBread);
+        return hamburger;
     }
 
     public Sprite GetIngredientSprite(Ingredient ingredient) => _ingredientSprites[(int)ingredient]; // 재료 사진 얻는 함수!!!

@@ -11,6 +11,7 @@ public class Hamburger : MonoBehaviour
     {
         GameObject go = new GameObject();
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sortingLayerName = "Hamburger";
         sr.sprite = GameManager.instance.GetIngredientSprite(ingredient);
         float height = sr.size.y;
 

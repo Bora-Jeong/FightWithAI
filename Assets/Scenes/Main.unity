@@ -793,6 +793,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434431293}
   m_CullTransparentMesh: 0
+--- !u!1 &445442828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445442829}
+  m_Layer: 0
+  m_Name: RecipeList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445442829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445442828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &488880641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3380,8 @@ MonoBehaviour:
   _timeText: {fileID: 1740161814}
   _playerScoreText: {fileID: 1067709171}
   _aiScoreText: {fileID: 1305386088}
+  _recipeRoot: {fileID: 445442829}
+  _recipe: {fileID: 4430760731192373143, guid: 0b64545e28027d14689dfaf0bdd09099, type: 3}
 --- !u!1 &1740161812
 GameObject:
   m_ObjectHideFlags: 0
