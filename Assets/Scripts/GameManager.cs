@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] DialoguePanel _dialoguePanel;
     [SerializeField] GameObject _gamePanel;
-    [SerializeField] GameObject _gameEndPanel;
+    [SerializeField] GameEndPanel _gameEndPanel;
     [SerializeField] Sprite[] _ingredientSprites;
 
     [Header("Prologue")]
@@ -139,7 +139,12 @@ public class GameManager : Singleton<GameManager>
     public void nextRound()
     {
         aiSpeed -= aiSpeed * 0.1f;
-        RoundStart(_day + 1, 60);
+        RoundStart(_day + 1, _totalTime);
+    }
+
+    public void Restart()
+    {
+        RoundStart(_day, _totalTime);
     }
 
     private void RoundStart(int day, float time) // 라운드 시작
@@ -152,6 +157,8 @@ public class GameManager : Singleton<GameManager>
         aiScore = 0;
         _recipeQ.Clear();
         _aiTalkTime = _aiTalkTerm;
+        playerHamburger.Discard();
+        aiHamburger.Discard();
 
         isPlaying = true;
         RefreshRecipe();
@@ -178,7 +185,8 @@ public class GameManager : Singleton<GameManager>
     private void GameOver() // 게임 오버
     {
         isPlaying = false;
-        _gameEndPanel.SetActive(true);
+        _gameEndPanel.gameObject.SetActive(true);
+        _gameEndPanel.SetText(_day, playerScore, aiScore);
 
     }
 
@@ -248,7 +256,6 @@ public class GameManager : Singleton<GameManager>
         Hamburger recipe = _aiRecipeQ.Dequeue();
 
         aiHamburger.Discard();
-        aiHamburger.ingredients.Clear();
         
         aiScore++;
         Destroy(recipe.transform.parent.gameObject);
@@ -266,6 +273,7 @@ public class GameManager : Singleton<GameManager>
         return hamburger;
     }
     
+
     public Hamburger GetAiRecipe()
     {
         return _aiRecipeQ.Peek();

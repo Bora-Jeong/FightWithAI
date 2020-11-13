@@ -66,9 +66,8 @@ public class Hamburger : MonoBehaviour
 
     public void Discard() //현재 햄버거 재료 모두 destroy
     {
-        for (int i = 0; i < ingredients.Count; i++)
-        {
-            Destroy(gameObject.transform.GetChild(i).gameObject);
-        }
+        for (int i = transform.childCount - 1; i >= 0; i--) // 쟁반 클리어
+            Destroy(transform.GetChild(i).gameObject);
+        ingredients.Clear();
     }
 }
