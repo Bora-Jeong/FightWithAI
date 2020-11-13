@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger playerHamburger;
 
-    private Queue<GameObject> _aiRecipeQ = new Queue<GameObject>(); // AI의 주문서들
+    private Queue<Hamburger> _aiRecipeQ = new Queue<Hamburger>(); // AI의 주문서들
 
     public Hamburger aiHamburger;
 
@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
             copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
             _recipeQ.Enqueue(hamburger);
-            _aiRecipeQ.Enqueue(copy);
+            _aiRecipeQ.Enqueue(copy.GetComponentInChildren<Hamburger>());
         }
     }
 
