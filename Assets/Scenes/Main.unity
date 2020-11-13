@@ -529,6 +529,7 @@ MonoBehaviour:
   hand: {fileID: 0}
   redLight: {fileID: 0}
   darkLight: {fileID: 0}
+  robotHead_animator: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1413,7 @@ MonoBehaviour:
   hand: {fileID: 1989702161}
   redLight: {fileID: 1516356600}
   darkLight: {fileID: 301310036}
+  robotHead_animator: {fileID: 148495590}
 --- !u!331 &1472288428
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -3150,6 +3152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameEndPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734862640165800582, guid: 2b51d670aa6aee54483f50c4393d6f6d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2734862640165800583, guid: 2b51d670aa6aee54483f50c4393d6f6d,
         type: 3}

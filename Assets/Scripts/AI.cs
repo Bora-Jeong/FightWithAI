@@ -10,6 +10,8 @@ public class AI : MonoBehaviour
     private GameObject redLight;
     [SerializeField]
     private GameObject darkLight;
+    [SerializeField]
+    private Animator robotHead_animator;
 
     private Animator animator;
     Hamburger curHamburger;
@@ -50,6 +52,7 @@ public class AI : MonoBehaviour
         isWorking = false;
         float speed = animator.speed;
 
+        robotHead_animator.SetBool("broken", true);
         animator.speed = 0;
         redLight.SetActive(true);
         darkLight.SetActive(true);
@@ -59,6 +62,7 @@ public class AI : MonoBehaviour
         animator.speed = speed;
         redLight.SetActive(false);
         darkLight.SetActive(false);
+        robotHead_animator.SetBool("broken", false);
 
         isWorking = true;
     }
