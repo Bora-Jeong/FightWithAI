@@ -58,4 +58,12 @@ public class Hamburger : MonoBehaviour
 
         ingredients.Enqueue(ingredient); // 큐에 추가
     }
+
+    public void Discard() //현재 햄버거 재료 모두 destroy
+    {
+        for(int i=0; i < ingredients.Count; i++)
+        {
+            Destroy(gameObject.transform.GetChild(i).gameObject);
+        }
+    }
 }

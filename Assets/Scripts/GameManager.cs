@@ -131,7 +131,7 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator GameSchedulling()
     {
-        while(remainTime > 0)
+        while (remainTime > 0)
         {
             remainTime -= Time.deltaTime;
             yield return null;
@@ -147,12 +147,12 @@ public class GameManager : Singleton<GameManager>
 
     private void RefreshRecipe()
     {
-        for(int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
+        for (int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
             hamburger.transform.SetParent(recipe.transform);
-            hamburger.transform.localPosition = new Vector3(0,  -30, 0);
+            hamburger.transform.localPosition = new Vector3(0, -30, 0);
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
             copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
@@ -164,15 +164,15 @@ public class GameManager : Singleton<GameManager>
     public void OnServingButton()
     {
         Queue<Ingredient> player = playerHamburger.ingredients;
-        
+
         Hamburger recipe = _recipeQ.Peek(); // 레시피 제일 앞 버거
         Queue<Ingredient> backup = new Queue<Ingredient>(recipe.ingredients);
 
         bool success = true;
-        while(player.Count > 0 && recipe.ingredients.Count > 0)
+        while (player.Count > 0 && recipe.ingredients.Count > 0)
         {
             //Debug.Log($"Player {player.Peek()}  vs {recipe.ingredients.Peek()}");
-            if(player.Dequeue() != recipe.ingredients.Dequeue())
+            if (player.Dequeue() != recipe.ingredients.Dequeue())
             {
                 success = false;
                 break;
@@ -194,11 +194,24 @@ public class GameManager : Singleton<GameManager>
         OnDumpButton(); // 플레이어 큐, 쟁반 클리어
     }
 
+
     public void OnDumpButton()
     {
         playerHamburger.ingredients.Clear(); // 플레이어 큐 clear
         for (int i = playerHamburger.transform.childCount - 1; i >= 0; i--) // 쟁반 클리어
             Destroy(playerHamburger.transform.GetChild(i).gameObject);
+    } 
+
+    public void ServeHamburger_ai()
+    {
+        Hamburger recipe = _aiRecipeQ.Dequeue();
+
+        aiHamburger.Discard();
+        aiHamburger.ingredients.Clear();
+        
+        aiScore++;
+        Destroy(recipe.transform.parent.gameObject);
+
     }
 
     private Hamburger GetRandomHamburger()
@@ -210,6 +223,11 @@ public class GameManager : Singleton<GameManager>
             hamburger.StackIngredientUI((Ingredient)Random.Range(1, 5));
         hamburger.StackIngredientUI(Ingredient.TopBread);
         return hamburger;
+    }
+    
+    public Hamburger GetAiRecipe()
+    {
+        return _aiRecipeQ.Peek();
     }
 
     public Sprite GetIngredientSprite(Ingredient ingredient) => _ingredientSprites[(int)ingredient]; // 재료 사진 얻는 함수!!!
