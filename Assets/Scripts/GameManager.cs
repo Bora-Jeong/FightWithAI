@@ -65,6 +65,8 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger aiHamburger;
 
+    private Coroutine _prologueCor = null;
+
     private readonly float _recipeDistance = 170f;
     private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
     private float _aiTalkTime; // AI 말하는 타이머
@@ -136,7 +138,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.F12)) // 디버그용
         {
-            HideRecipe();
+            //HideRecipe();
         }
     }
 
@@ -144,7 +146,7 @@ public class GameManager : Singleton<GameManager>
     {
         AudioManager.instance.ClickSound();
         _lobbyPanel.gameObject.SetActive(false);
-        StartCoroutine(StartPrologue());
+        _prologueCor = StartCoroutine(StartPrologue());
     }
 
     IEnumerator StartPrologue()  // 프롤로그 시작
@@ -157,7 +159,14 @@ public class GameManager : Singleton<GameManager>
             _dialoguePanel.Set(_prologueBG[_dialogues[i].bgIndex], _dialogues[i].content);
             yield return new WaitForSeconds(3f);
         }
-        
+
+        StartCoroutine(StartIntroduction());
+
+        _prologueCor = null;
+    }
+
+    private IEnumerator StartIntroduction() // 게임 설명 시작
+    {
         _dialoguePanel.gameObject.SetActive(false);
         _gamePanel.gameObject.SetActive(true);
 
@@ -178,16 +187,29 @@ public class GameManager : Singleton<GameManager>
         RoundStart(1, 60f);
     }
 
+    public void OnSkipPrologueButton()
+    {
+        AudioManager.instance.ClickSound();
+        if(_prologueCor != null)
+        {
+            StopCoroutine(_prologueCor);
+            _prologueCor = null;
+            StartCoroutine(StartIntroduction());
+        }
+    }
+
     public void nextRound()
     {
         _aiSpeed = Mathf.Min(_aiSpeed * 1.2f, 10f);
-        RoundStart(_day + 1, _totalTime);
+        _day++;
+        RoundStart(_day, _totalTime);
     }
 
     public void Restart()
     {
         RoundStart(_day, _totalTime);
     }
+
 
     private void RoundStart(int day, float time) // 라운드 시작
     {
