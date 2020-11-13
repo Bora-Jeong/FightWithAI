@@ -121,7 +121,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        Screen.SetResolution(1920, 1080, false);
+        Screen.SetResolution(1920, 1080, true);
 
         _lobbyPanel.gameObject.SetActive(true);
         _dialoguePanel.gameObject.SetActive(false);
