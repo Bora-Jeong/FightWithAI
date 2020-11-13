@@ -7,12 +7,12 @@ public class Hamburger : MonoBehaviour
 {
     public Queue<Ingredient> ingredients = new Queue<Ingredient>(); // 재료 큐
 
-    public void StackIngredient(Ingredient ingredient)
+    public void StackIngredient(Ingredient ingredient, bool isAI = false)
     {
         GameObject go = new GameObject();
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sortingLayerName = "Hamburger";
-        sr.sprite = GameManager.instance.GetIngredientSprite(ingredient);
+        sr.sprite = GameManager.instance.GetIngredientSprite(ingredient, isAI);
 
         float y = sr.bounds.size.y;
         go.transform.SetParent(transform);

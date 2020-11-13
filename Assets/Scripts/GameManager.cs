@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject _gamePanel;
     [SerializeField] GameEndPanel _gameEndPanel;
     [SerializeField] Sprite[] _ingredientSprites;
+    [SerializeField] Sprite[] _aiIngredientSprites;
 
     [Header("Prologue")]
     [SerializeField] Sprite[] _prologueBG;
@@ -291,5 +292,9 @@ public class GameManager : Singleton<GameManager>
         return _aiRecipeQ.Peek();
     }
 
-    public Sprite GetIngredientSprite(Ingredient ingredient) => _ingredientSprites[(int)ingredient]; // 재료 사진 얻는 함수!!!
+    public Sprite GetIngredientSprite(Ingredient ingredient, bool isAI = false) // 재료 사진 얻는 함수!!!
+    {
+        if(isAI)  return _aiIngredientSprites[(int)ingredient];
+        else  return _ingredientSprites[(int)ingredient];
+    }
 }
