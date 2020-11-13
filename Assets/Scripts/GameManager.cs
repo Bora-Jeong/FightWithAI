@@ -152,6 +152,7 @@ public class GameManager : Singleton<GameManager>
             hamburger.transform.SetParent(recipe.transform);
             hamburger.transform.localPosition = new Vector3(0,  -30, 0);
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
+            copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
             _recipeQ.Enqueue(hamburger);
             _aiRecipeQ.Enqueue(hamburger);
