@@ -357,6 +357,7 @@ public class GameManager : Singleton<GameManager>
     {
         Hamburger hamburger = new GameObject("Hamburger").AddComponent<Hamburger>();
         int count = Random.Range(_day + 1, _day + 3); // 1일차 최소 2 , 최대 3개
+        count = Mathf.Min(count, 5);
         hamburger.StackIngredientUI(Ingredient.BottomBread);
         for (int i = 0; i < count; i++)
             hamburger.StackIngredientUI((Ingredient)Random.Range(1, 5));
