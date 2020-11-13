@@ -60,6 +60,7 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger aiHamburger;
 
+    private readonly float _recipeDistance = 170f;
     private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
     private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
@@ -104,13 +105,13 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        StartCoroutine(StartPrologue());
+        //StartCoroutine(StartPrologue());
 
         // 임시코드 프롤로그 시작 안하고 바로 게임 시작
-        //_dialoguePanel.gameObject.SetActive(false);
-        //_gamePanel.gameObject.SetActive(true);
-        //RoundStart(1, 60f);
-        // 임시 코드
+        _dialoguePanel.gameObject.SetActive(false);
+        _gamePanel.gameObject.SetActive(true);
+        RoundStart(1, 60f);
+        //임시 코드
     }
 
     IEnumerator StartPrologue()  // 프롤로그 시작
@@ -196,6 +197,7 @@ public class GameManager : Singleton<GameManager>
             DestroyImmediate(temp.transform.parent.gameObject);
         }
 
+
         for (int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();
@@ -240,8 +242,17 @@ public class GameManager : Singleton<GameManager>
         if (success) // 성공시
         {
             _recipeQ.Dequeue();
-            Destroy(recipe.transform.parent.gameObject); // UI도 삭제
             playerScore++;
+
+            _recipeRoot.GetComponent<HorizontalLayoutGroup>().enabled = false;
+            Transform bill = recipe.transform.parent;
+            bill.SetParent(_gamePanel.transform);
+            LeanTween.moveY(bill.gameObject, bill.position.y + 100f, 0.3f).setDestroyOnComplete(true);
+            for(int i = 0; i < _recipeRoot.childCount; i++)
+            {
+                Transform child = _recipeRoot.GetChild(i);
+                LeanTween.moveX(child.gameObject, child.transform.position.x - _recipeDistance, 0.3f);
+            }
         }
         else
             recipe.ingredients = backup;

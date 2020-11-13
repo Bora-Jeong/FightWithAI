@@ -24,11 +24,6 @@ public class AI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
-    {
-        curHamburger = GameManager.instance.GetAiRecipe();
-    }
-
     public void StartWork(float speed)
     {
         isWorking = true;
