@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Transform _recipeRoot;
     [SerializeField] Transform _aiRecipeRoot;
     [SerializeField] GameObject _recipe;
+    [SerializeField] AITalk _aiTalk;
 
     private int _day;
     private float _totalTime;
@@ -56,7 +57,10 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger aiHamburger;
 
+    private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
+    private float _aiTalkTime; // AI 말하는 타이머
     public bool isPlaying { get; private set; } // 게임 중?
+
     public int playerScore
     {
         get => _playerScore;
@@ -123,6 +127,7 @@ public class GameManager : Singleton<GameManager>
         playerScore = 0;
         aiScore = 0;
         _recipeQ.Clear();
+        _aiTalkTime = _aiTalkTerm;
 
         isPlaying = true;
         RefreshRecipe();
@@ -134,6 +139,12 @@ public class GameManager : Singleton<GameManager>
         while (remainTime > 0)
         {
             remainTime -= Time.deltaTime;
+            _aiTalkTime -= Time.deltaTime;
+            if(_aiTalkTime <= 0) // AI가 도발하는 멘트
+            {
+                _aiTalk.Show();
+                _aiTalkTime = _aiTalkTerm;
+            }
             yield return null;
         }
 

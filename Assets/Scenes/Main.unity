@@ -2471,6 +2471,7 @@ MonoBehaviour:
   _recipeRoot: {fileID: 434431294}
   _aiRecipeRoot: {fileID: 1732159701}
   _recipe: {fileID: 741849934672592831, guid: 0b64545e28027d14689dfaf0bdd09099, type: 3}
+  _aiTalk: {fileID: 919438176}
   playerHamburger: {fileID: 2583071209526213420}
   aiHamburger: {fileID: 1104804297}
 --- !u!1 &1740161812

@@ -15,6 +15,7 @@ public class AITalk : MonoBehaviour
     private string[] success;
 
     private bool isShowing = false;
+    private int contentIndex = 0;
 
     public void Show()
     {
@@ -26,7 +27,8 @@ public class AITalk : MonoBehaviour
     {
         isShowing = true;
         talk.SetActive(true);
-        text.text = contents[Random.Range(0, contents.Length)];
+        text.text = contents[contentIndex];
+        contentIndex = (contentIndex + 1) % contents.Length;
         yield return new WaitForSeconds(2f);
         talk.SetActive(false);
         isShowing = false;
