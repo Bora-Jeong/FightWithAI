@@ -105,13 +105,17 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+
         //StartCoroutine(StartPrologue());
+
 
         // 임시코드 프롤로그 시작 안하고 바로 게임 시작
         _dialoguePanel.gameObject.SetActive(false);
         _gamePanel.gameObject.SetActive(true);
         RoundStart(1, 60f);
+
         //임시 코드
+
     }
 
     IEnumerator StartPrologue()  // 프롤로그 시작
@@ -253,6 +257,7 @@ public class GameManager : Singleton<GameManager>
                 Transform child = _recipeRoot.GetChild(i);
                 LeanTween.moveX(child.gameObject, child.transform.position.x - _recipeDistance, 0.3f);
             }
+
         }
         else
             recipe.ingredients = backup;
@@ -263,7 +268,8 @@ public class GameManager : Singleton<GameManager>
 
     public void OnDumpButton()
     {
-        playerHamburger.ingredients.Clear(); // 플레이어 큐 clear
+        AudioManager.instance.DumpSound();
+       playerHamburger.ingredients.Clear(); // 플레이어 큐 clear
         for (int i = playerHamburger.transform.childCount - 1; i >= 0; i--) // 쟁반 클리어
             Destroy(playerHamburger.transform.GetChild(i).gameObject);
     }
@@ -274,6 +280,7 @@ public class GameManager : Singleton<GameManager>
         {
             _ai.Pause();
             _hammerChance--;
+           
         }
     }
 
