@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Hamburger : MonoBehaviour
 {
-    private Queue<Ingredient> _ingredients = new Queue<Ingredient>(); // 재료 큐
-    public Queue<Ingredient> ingredients => _ingredients;
+    public Queue<Ingredient> ingredients = new Queue<Ingredient>(); // 재료 큐
 
     public void StackIngredient(Ingredient ingredient)
     {
@@ -17,7 +16,7 @@ public class Hamburger : MonoBehaviour
         float height = sr.size.y;
 
         Vector3 pos = Vector3.zero;
-        if (_ingredients.Count > 0) // 아래에 다른 재료가 있다면
+        if (ingredients.Count > 0) // 아래에 다른 재료가 있다면
         {
             Transform under = transform.GetChild(transform.childCount - 1);
             SpriteRenderer underSR = under.GetComponent<SpriteRenderer>();
@@ -31,7 +30,7 @@ public class Hamburger : MonoBehaviour
         go.transform.SetParent(transform);
         go.transform.position = pos;
 
-        _ingredients.Enqueue(ingredient); // 큐에 추가
+        ingredients.Enqueue(ingredient); // 큐에 추가
     }
 
     public void StackIngredientUI(Ingredient ingredient)
@@ -43,7 +42,7 @@ public class Hamburger : MonoBehaviour
         float height = image.sprite.rect.height;
 
         Vector3 pos = Vector3.zero;
-        if (_ingredients.Count > 0) // 아래에 다른 재료가 있다면
+        if (ingredients.Count > 0) // 아래에 다른 재료가 있다면
         {
             Transform under = transform.GetChild(transform.childCount - 1);
             Image underSR = under.GetComponent<Image>();
@@ -57,6 +56,6 @@ public class Hamburger : MonoBehaviour
         go.transform.SetParent(transform);
         go.transform.position = pos;
 
-        _ingredients.Enqueue(ingredient); // 큐에 추가
+        ingredients.Enqueue(ingredient); // 큐에 추가
     }
 }

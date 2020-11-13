@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     public Hamburger playerHamburger;
 
-    private Queue<Hamburger> _aiRecipeQ = new Queue<Hamburger>(); // AI의 주문서들
+    private Queue<GameObject> _aiRecipeQ = new Queue<GameObject>(); // AI의 주문서들
 
     public Hamburger aiHamburger;
 
@@ -83,7 +83,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             _remainTime = value;
-            _timeText.text = $"{_remainTime}초";
+            _timeText.text = $"{(int)_remainTime}초";
             _timeSlider.value = _remainTime / _totalTime;
         }
     }
@@ -157,18 +157,21 @@ public class GameManager : Singleton<GameManager>
             copy.transform.localScale = Vector3.one * 0.6f;
             copy.transform.localPosition = new Vector3(0, -30, 0);
             _recipeQ.Enqueue(hamburger);
-            _aiRecipeQ.Enqueue(hamburger);
+            _aiRecipeQ.Enqueue(copy);
         }
     }
 
-    public bool OnServingButton() // 플레이어가 만든 햄버거가 맞게 만들었는지
+    public void OnServingButton()
     {
         Queue<Ingredient> player = playerHamburger.ingredients;
-        Hamburger recipe = _recipeQ.Dequeue(); // 레시피 제일 앞 버거
+        
+        Hamburger recipe = _recipeQ.Peek(); // 레시피 제일 앞 버거
+        Queue<Ingredient> backup = new Queue<Ingredient>(recipe.ingredients);
 
         bool success = true;
         while(player.Count > 0 && recipe.ingredients.Count > 0)
         {
+            //Debug.Log($"Player {player.Peek()}  vs {recipe.ingredients.Peek()}");
             if(player.Dequeue() != recipe.ingredients.Dequeue())
             {
                 success = false;
@@ -179,14 +182,24 @@ public class GameManager : Singleton<GameManager>
         if (player.Count > 0 || recipe.ingredients.Count > 0)
             success = false;
 
-        playerHamburger.ingredients.Clear();
+        if (success) // 성공시
+        {
+            _recipeQ.Dequeue();
+            Destroy(recipe.transform.parent.gameObject); // UI도 삭제
+            playerScore++;
+        }
+        else
+            recipe.ingredients = backup;
 
-        Destroy(recipe.transform.parent.gameObject);
-        // 새로 레시피 추가
-
-        return success;
+        OnDumpButton(); // 플레이어 큐, 쟁반 클리어
     }
 
+    public void OnDumpButton()
+    {
+        playerHamburger.ingredients.Clear(); // 플레이어 큐 clear
+        for (int i = playerHamburger.transform.childCount - 1; i >= 0; i--) // 쟁반 클리어
+            Destroy(playerHamburger.transform.GetChild(i).gameObject);
+    }
 
     private Hamburger GetRandomHamburger()
     {
