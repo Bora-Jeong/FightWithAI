@@ -29,6 +29,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Sprite[] _ingredientSprites;
     [SerializeField] Sprite[] _aiIngredientSprites;
 
+    [Header("Lobby")]
+    [SerializeField] Text _stageText;
+
     [Header("Prologue")]
     [SerializeField] Sprite[] _prologueBG;
     [SerializeField] Dialogue[] _dialogues;
@@ -51,7 +54,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject _intro;
     [SerializeField] Text _introText;
 
-    private int _day;
     private float _totalTime;
     private float _remainTime;
     private int _playerScore;
@@ -66,6 +68,7 @@ public class GameManager : Singleton<GameManager>
     public Hamburger aiHamburger;
 
     private Coroutine _prologueCor = null;
+    private Coroutine _introCor = null;
 
     private readonly float _recipeDistance = 170f;
     private readonly float _aiTalkTerm = 8f; // 8초에 한번씩 도발
@@ -118,28 +121,24 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int stage
+    {
+        get => PlayerPrefs.GetInt("Stage", 1);
+        set
+        {
+            PlayerPrefs.SetInt("Stage", value);
+        }
+    }
+
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         Screen.SetResolution(1920, 1080, true);
 
+        _stageText.text = stage.ToString();
         _lobbyPanel.gameObject.SetActive(true);
         _dialoguePanel.gameObject.SetActive(false);
         _gamePanel.gameObject.SetActive(false);
-
-        // 임시코드 프롤로그 시작 안하고 바로 게임 시작
-       // _dialoguePanel.gameObject.SetActive(false);
-       // _gamePanel.gameObject.SetActive(true);
-       // RoundStart(1, 60f);
-        //임시 코드
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F12)) // 디버그용
-        {
-            //HideRecipe();
-        }
     }
 
     public void StartGameButton()
@@ -160,7 +159,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(3f);
         }
 
-        StartCoroutine(StartIntroduction());
+        _introCor = StartCoroutine(StartIntroduction());
 
         _prologueCor = null;
     }
@@ -184,8 +183,11 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(0.2f);
 
         _intro.SetActive(false);
-        RoundStart(1, 60f);
+        RoundStart(int.Parse(_stageText.text));
+
+        _introCor = null;
     }
+
 
     public void OnSkipPrologueButton()
     {
@@ -194,32 +196,45 @@ public class GameManager : Singleton<GameManager>
         {
             StopCoroutine(_prologueCor);
             _prologueCor = null;
-            StartCoroutine(StartIntroduction());
+            _introCor = StartCoroutine(StartIntroduction());
+        }
+    }
+
+    public void OnSkipIntroButton()
+    {
+        AudioManager.instance.ClickSound();
+        if(_introCor != null)
+        {
+            StopCoroutine(_introCor);
+            _introCor = null;
+            _intro.SetActive(false);
+            RoundStart(int.Parse(_stageText.text));
         }
     }
 
     public void nextRound()
     {
-        _aiSpeed = Mathf.Min(_aiSpeed * 1.2f, 10f);
-        _day++;
-        RoundStart(_day, _totalTime);
+        int cur = int.Parse(_stageText.text);
+        if(cur == stage)
+            stage++;
+        RoundStart(cur+1);
     }
 
     public void Restart()
     {
-        RoundStart(_day, _totalTime);
+        int cur = int.Parse(_stageText.text);
+        RoundStart(cur);
     }
 
-
-    private void RoundStart(int day, float time) // 라운드 시작
+    private void RoundStart(int stage, float time = 60) // 라운드 시작
     {
-        _day = day;
-        _dayText.text = $"{_day}일차";
+        _dayText.text = $"{stage}라운드";
         _totalTime = time;
         remainTime = _totalTime;
         playerScore = 0;
         aiScore = 0;
         _aiTalkTime = _aiTalkTerm;
+        _aiSpeed = Mathf.Min(4f * Mathf.Pow(1.2f,  stage - 1), 10f);
         _hammerChance = 1;
         _aiDisturbCount = 1;
         HammerButton.interactable = true;
@@ -256,7 +271,7 @@ public class GameManager : Singleton<GameManager>
         isPlaying = false;
         _ai.StopWork();
         _gameEndPanel.gameObject.SetActive(true);
-        _gameEndPanel.SetText(_day, playerScore, aiScore);
+        _gameEndPanel.SetText(stage, playerScore, aiScore);
     }
 
     private void HideRecipe()
@@ -378,7 +393,7 @@ public class GameManager : Singleton<GameManager>
     private Hamburger GetRandomHamburger()
     {
         Hamburger hamburger = new GameObject("Hamburger").AddComponent<Hamburger>();
-        int count = Random.Range(_day + 1, _day + 3); // 1일차 최소 2 , 최대 3개
+        int count = Random.Range(stage + 1, stage + 3); // 1일차 최소 2 , 최대 3개
         count = Mathf.Min(count, 5);
         hamburger.StackIngredientUI(Ingredient.BottomBread);
         for (int i = 0; i < count; i++)
@@ -398,4 +413,20 @@ public class GameManager : Singleton<GameManager>
         if(isAI)  return _aiIngredientSprites[(int)ingredient];
         else  return _ingredientSprites[(int)ingredient];
     }
+
+    public void OnPrevStageButton()
+    {
+        AudioManager.instance.ClickSound();
+        int cur = int.Parse(_stageText.text);
+        cur = Mathf.Max(cur - 1, 1);
+        _stageText.text = cur.ToString();
+    }
+    public void OnNextStageButton()
+    {
+        AudioManager.instance.ClickSound();
+        int cur = int.Parse(_stageText.text);
+        cur = Mathf.Min(cur+1, stage);
+        _stageText.text = cur.ToString();
+    }
+
 }
