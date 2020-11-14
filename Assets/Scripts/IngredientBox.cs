@@ -28,7 +28,6 @@ public class IngredientBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("point");
         curIngredient = ingredientTransform.GetChild((int)ingredient).gameObject;
         curIngredient.SetActive(true);
 

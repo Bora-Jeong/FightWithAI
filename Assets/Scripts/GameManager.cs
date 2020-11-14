@@ -295,13 +295,13 @@ public class GameManager : Singleton<GameManager>
         }
 
         _recipeRoot.GetComponent<HorizontalLayoutGroup>().enabled = true;
-        for (int i = 0; i < 30; i++) // 라운드 시작시 일단 6개 레시피 로드해놓음
+        for (int i = 0; i < 40; i++) // 라운드 시작시 일단 40개 레시피 로드해놓음
         {
             Hamburger hamburger = GetRandomHamburger();
             GameObject recipe = Instantiate(_recipe, _recipeRoot);
             hamburger.transform.SetParent(recipe.transform);
-            hamburger.transform.localScale = Vector3.one * 1f;
-            hamburger.transform.localPosition = new Vector3(0, -40, 0);
+            hamburger.transform.localScale = Vector3.one;
+            hamburger.transform.localPosition = new Vector3(0, -50, 0);
             _recipeQ.Enqueue(hamburger);
 
             GameObject copy = Instantiate(recipe, _aiRecipeRoot);
@@ -427,6 +427,16 @@ public class GameManager : Singleton<GameManager>
         int cur = int.Parse(_stageText.text);
         cur = Mathf.Min(cur+1, stage);
         _stageText.text = cur.ToString();
+    }
+
+    public void StopGame()
+    {
+        StopAllCoroutines();
+        _gamePanel.SetActive(false);
+        _gameEndPanel.gameObject.SetActive(false);
+        _ai.StopWork();
+        _stageText.text = stage.ToString();
+        _lobbyPanel.SetActive(true);
     }
 
 }
